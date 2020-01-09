@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>Hello, world!</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <style type="text/css">
+    * {
+      font-family: 'Stylish', sans-serif;
+    }
+    .wrap {
+      width: 700px;
+      height: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .jumbotron {
+      max-width: 750px;
+      max-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .productimage {
+      width: 650px;
+      height: 330px;
+      padding: 1rem auto;
+      margin: 1rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .smalltext {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .smallslimtext {
+      font-size: 20px;
+      font-weight: 100;
+    }
+    .comment {
+      color: blue;
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+    <div class="jumbotron">
+      <div class="productimage">
+        <img class="productimage" src="https://thezenofhollywood.com/wp-content/uploads/2018/09/the-matrix-7.jpg">
+      </div>
+    </div>
+    <div class="text">
+      <h1>
+        초능력을 팝니다
+        <span class="smalltext"> Time of Choice : Now or Never</span> 
+      <h1>
+        <div>
+        <p class="smallslimtext">빨간 알약을 먹으면 특별한 힘을 가질 수 있어요. 초능력을 원치 않고 현재에 만족한다면 파란 알약을 선택하세요. 불쾌한 지식과 잔인한 진실을 원하시나요?</p>
+        </div>
+    </div>
+      <div class="input-group mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+          <span class="input-group-text" id="">선택자 이름</span>
+          </div>
+          <input type="text" class="form-control">
+          </div>
+      </div>
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">선택</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+          <option selected>--알약을 선택해주세요--</option>
+          <option value="1">Red Pill</option>
+          <option value="2">Blue Pill</option>
+          </select>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+          <span class="input-group-text" id="">주소</span>
+          </div>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+          <span class="input-group-text" id="">전화번호</span>
+          </div>
+          <input type="text" class="form-control">
+        </div>
+      </div>
+         <button type="button" class="btn btn-primary">주문하기</button>
+    </div>
+  </div>
+</body>
+</html>
