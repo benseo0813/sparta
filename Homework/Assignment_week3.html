@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>Hello, Neo!</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js>"></script>
+  -->
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <style type="text/css">
+    * {
+      font-family: 'Poor Story', cursive;
+    }
+    .wrap {
+      width: 550px;
+      height: 900px;
+      margin: auto;
+/*      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;*/
+    }
+    .jumbotron {
+      max-width: 600px;
+      max-height: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .productimage {
+      width: 500px;
+      height: 300px;
+      padding: 1rem auto;
+      margin: 1rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .smalltext {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .custom-select {
+      font-size: 15px;
+      font-weight: 100;
+    }
+
+    .input-group {
+      font-size: 15px;
+      font-weight: 100;
+    }
+
+    .smallslimtext {
+      font-size: 15px;
+      font-weight: 100;
+    }
+    .comment {
+      color: blue;
+      font-weight: bold;
+    }
+    .buttonalign {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .table {
+      table-layout: fixed ;
+      margin: 20px 0;
+      font-size: 15px;
+      font-weight: 100;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      max-width: 300px;
+      border-collapse: collapse;
+
+    }
+    table td, table th {
+      max-width: 300px;
+      border: none #a8a7a7;
+      text-align: center;
+      padding: 5px;
+    }
+
+  </style>
+
+  <script>
+
+   $(document).ready(function(){
+    $('#ordertable').html('');
+    listing();
+  });
+
+   function isCellPhone(p) {
+    var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+    return regExp.test(p);
+  }
+
+  function order() {
+    let name = $('#input-name').val();
+    let select = $('#order_select').val();
+    let address = $('#input-address').val();
+    let phone = $('#input-phone').val();
+
+    if (name == ''){
+      alert('이름을 입력해주세요.');
+      $ ('#input-name').focus();
+    }
+    else if (select==''){
+      alert('알약을 선택해주세요');
+      $ ('#order_select').focus();
+    }
+    else if (address==''){
+      alert('주소를 입력해주세요')
+      $('#input-address').focus();
+    }
+    else if (phone==''){
+      alert('휴대폰 번호를 입력해주세요');
+      $('#input-phone').focus();
+    }
+    else if (!isCellPhone(phone)) {
+      alert('휴대폰 입력 형식이 틀립니다.\n010-0000-0000으로 입력해주세요')
+    }
+    // else {
+    //   let name = $('#input-name').val();
+    //   let select = $('#order_select option:selected').text();
+    //   let address = $('#input-address').val();
+    //   let phone = $('#input-phone').val();
+
+    //   // let temp_html = '<tr>'+'<td>'+name+'</td>'+'<td>'+select+'</td>'+'<td>'+address+'</td>'+'<td>'+phone+'</td>'+'</tr>';
+    //   // $('#ordertable').append(temp_html);
+    // }
+  }
+
+  function listing() {
+    $.ajax({
+      type: "GET",
+      url: "http://spartacodingclub.shop/order",
+      data: {},
+      success: function(response){
+        let orders = response['orders'];
+        console.log(orders);
+        for (let i = 0; i < orders.length; i++) {
+          makeorder(orders[i]['name'],orders[i]['count'],orders[i]['address'],orders[i]['phone'])
+        }
+      }
+    })
+  }
+
+  function makeorder(name, count, address, phone) {
+    let temp_html = '<tr>\
+          <td>'+name+'</td>\
+          <td>'+count+'</td>\
+          <td>'+address+'</td>\
+          <td>'+phone+'</td>\
+        </tr>';
+    $('#ordertable').append(temp_html);
+  }
+
+</script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="jumbotron">
+      <div class="productimage">
+        <img class="productimage" src="https://thezenofhollywood.com/wp-content/uploads/2018/09/the-matrix-7.jpg">
+      </div>
+    </div>
+    <div class="text">
+      <h1>
+        초능력을 팝니다
+        <span class="smalltext"> Time of Choice : Now or Never</span> 
+        <h1>
+          <div>
+            <p class="smallslimtext">빨간 알약을 먹으면 특별한 힘을 가질 수 있어요. 초능력을 원치 않고 현재에 만족한다면 파란 알약을 선택하세요. 불쾌한 지식과 잔인한 진실을 원하시나요?</p>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="">선택자 이름</span>
+              </div>
+              <input type="text" class="form-control" id="input-name">
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">선택</label>
+            </div>
+            <select class="custom-select" id="order_select">
+              <option selected value="">--알약을 선택해주세요--</option>
+              <option value="1">1. Red Pill</option>
+              <option value="2">2. Blue Pill</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="">주소</span>
+              </div>
+              <input type="text" class="form-control" id ="input-address">
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="">전화번호</span>
+              </div>
+              <input type="text" class="form-control" id="input-phone">
+            </div>
+          </div>
+          <div class="buttonalign">
+            <button type="button" class="btn btn-primary" onclick="order()" id="order">주문하기</button>
+          </div>
+          <div class="input-group mb-3">
+          </div>
+        <div>
+          <table class="table table-hover">
+            <thead>
+             <tr>
+               <th scope="col">이름</th>
+               <th scope="col">선택</th>
+               <th scope="col">주소</th>
+               <th scope="col">전화번호</th>
+             </tr>
+           </thead>
+           <tbody id="ordertable">
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </body>
+   </html>
